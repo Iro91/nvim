@@ -34,32 +34,35 @@ return {
                 }
             })
 
+            local nnoremap = require("user.keymap_utils").nnoremap
             local ts = require('telescope.builtin')
             local skip_find = { ".git/" }
             -- Find all files in the current directory
-            vim.keymap.set('n', '<leader>ff', function()
+            nnoremap('<leader>ff', function()
                 ts.find_files({ hidden = true, file_ignore_patterns = skip_find })
             end)
 
             -- List all recent files
-            vim.keymap.set('n', '<leader>fr', function()
+            nnoremap('<leader>fr', function()
                 ts.oldfiles({ hidden = true, file_ignore_patterns = skip_find })
             end)
 
             -- List only git files
-            vim.keymap.set('n', '<leader>fg', function()
+            nnoremap('<leader>fg', function()
                 ts.git_files({ hidden = true, file_ignore_patterns = skip_find })
             end)
 
             -- vim.keymap.set('n', '<leader>gff', ts.git_files, {})
             -- Search all files in the current directory
-            vim.keymap.set('n', '<leader>gf', function()
+            nnoremap('<leader>gf', function()
                 local settings = {
                     additional_args = {'--hidden'},
                     glob_pattern = '!.git/'
                 }
                 ts.live_grep(settings)
             end)
+            -- Show me all my live buffers
+            nnoremap('<leader>bb', function() ts.buffers() end)
 
         end
     }

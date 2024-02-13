@@ -13,8 +13,8 @@ vnoremap("<space>", "<nop>")
 inoremap('jk', '<escape>')
 
 -- Paste using C-v
-inoremap('<C-v>', '<ESC>"+pa')
-nnoremap('<C-v>', '"+pa')
+--inoremap('<C-v>', '<ESC>"+pa')
+--nnoremap('<C-v>', '"+pa')
 
 -- Visual Mode Mappings
 -- Maybe we don't even need this
