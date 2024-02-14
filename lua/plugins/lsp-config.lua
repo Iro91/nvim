@@ -85,6 +85,7 @@ return {
 			-- Use neodev to configure lua_ls in nvim directories - must load before lspconfig
 			require("neodev").setup()
 
+            local nnoremap = require("user.keymap_utils").nnoremap
             local lspconfig = require("lspconfig")
             --local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -95,15 +96,16 @@ return {
             lspconfig.clangd.setup({
                 init_options = {
                     compilationDatabasePath = os.getenv("MSW_BUILD_DIR")
-                }
+                },
+                nnoremap("<leader>ch", ":ClangdSwitchSourceHeader<CR>", {})
             })
 
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-            vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-            vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+            nnoremap("K", vim.lsp.buf.hover, {})
+            nnoremap("<leader>gd", vim.lsp.buf.definition, {})
+            nnoremap("<leader>gr", vim.lsp.buf.references, {})
+            nnoremap("<leader>ca", vim.lsp.buf.code_action, {})
 
-			local formatting = null_ls.builtins.formatting
+			--local formatting = null_ls.builtins.formatting
 			--local diagnostics = null_ls.builtins.diagnostics
 			--local code_actions = null_ls.builtins.code_actions
 
